@@ -3,14 +3,15 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 // Create the context
 const APIKeyContext = createContext();
 
-// Provider component
+const backend_deployed_link = import.meta.env.VITE_REACT_APP_BACKEND_URL;
+
 export const APIKeyProvider = ({ children }) => {
   const [apiKey, setApiKey] = useState('');
-
+  console.log(backend_deployed_link);
   useEffect(() => {
     const fetchApiKey = async () => {
       try {
-        const response = await fetch('http://localhost:3000/get-tmdb-key', {
+        const response = await fetch(`${backend_deployed_link}/get-tmdb-key`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
         });
