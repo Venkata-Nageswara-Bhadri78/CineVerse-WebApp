@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PopularMoviesList from '../components/PopularMoviesList'
-import { usePopularMovies } from '../API/Tmdb'
 import PageBar from '../API/PageBar';
 
 const PopularMoviesPage = () => {
   const [page, setPage] = useState(1); 
-  const pageStyle = 'grid grid-row-3'; 
+
+  const pageStyle = true;
+  const topRef = useRef(null);
+
+  useEffect(() => {
+    if(topRef.current){
+      topRef.current.scrollIntoView({ behavior: 'smooth'});
+    }
+  }, [page]);
+  // const [pageBarStop, setPageBarStop] = useState(false);
+
   return (
     <div>
+      <div ref={topRef}></div>
       <PopularMoviesList pageStyle={pageStyle} page={page}/>
-      <div><PageBar page={page} setPage={setPage}/></div>
-
+      <div><PageBar setPage={setPage} page={page} /></div>
     </div>
   )
 }

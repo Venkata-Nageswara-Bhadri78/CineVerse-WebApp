@@ -6,11 +6,12 @@ import TrendingSection from '../components/TrendingSection';
 import TopRatedSection from '../components/TopRatedSection';
 
 const TopRatedMoviesPage = () => {
-  const [page, setPage] = useState(1);  
+  const [page, setPage] = useState(1); 
+  const [pageStyle, setPageStyle] = useState(true); 
 
   return (
-    <div>
-      <TopRatedSection page={page}/>
+    <div className='w-full'>
+      <TopRatedSection pageStyle={pageStyle} page={page}/>
       <PageBar page={page} setPage={setPage}/>
     </div>
   )
