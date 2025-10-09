@@ -31,7 +31,7 @@ const DayWeekSwitcher = ({selected, setSelected}) => {
           onChange={onChange}
           options={options}
           initialSelectedIndex={initialSelectedIndex}
-          backgroundColor={"#353b48"}
+          backgroundColor={"#0F3D4A"}
           fontColor={"#f5f6fa"}
         />
       </div>
