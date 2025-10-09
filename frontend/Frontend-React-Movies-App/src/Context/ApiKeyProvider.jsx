@@ -7,7 +7,7 @@ const backend_deployed_link = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
 export const APIKeyProvider = ({ children }) => {
   const [apiKey, setApiKey] = useState('');
-  console.log(backend_deployed_link);
+  // console.log(backend_deployed_link);
   useEffect(() => {
     const fetchApiKey = async () => {
       try {
