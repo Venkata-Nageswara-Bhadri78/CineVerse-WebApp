@@ -4,7 +4,6 @@ const baseLink = import.meta.env.VITE_BASELINK;
 
 import { useAPIKey } from '../Context/ApiKeyProvider';
 
-
 export const useAllMoviesData = () => {
   const apiKey = useAPIKey();  // Access the API key from context
 
