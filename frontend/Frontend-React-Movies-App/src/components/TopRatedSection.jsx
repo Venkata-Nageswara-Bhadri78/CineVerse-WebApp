@@ -11,7 +11,7 @@ import TvShowListing from './TvShowListing';
 import DayWeekSwitcher from '../API/DayWeekSwitcher';
 import CategorySwitcher from '../API/CategorySwitcher';
 
-const TopRatedSection = ({page=1}) => {
+const TopRatedSection = ({pageStyle, page=1}) => {
 
     const [choice, setChoice] = useState("movie"); 
     const [time, setTime] = useState("day"); 
@@ -19,17 +19,17 @@ const TopRatedSection = ({page=1}) => {
     const {topRated, loading, error } = useTopRatedMovies({type: choice, category: "top_rated", page: page});
 
     return (
-        <div> 
-            <div className='items-center p-4 bg-gray-300 flex flex-row justify-between'>
-                <div className='text-xl'>Top Rated</div>
+        <div className=''> 
+            <div className='items-center p-2 bg-gray-300 flex flex-row justify-between'>
+                <div className='p-2 text-xl'>Top Rated</div>
                 <ChoiceSelector selectChoice={choice} setSelectChoice={setChoice} isTopRated={true} />
             </div>
-            <div className='flex flex-row overflow-x-auto w-full bg-gray-300'>
+            <div className='flex flex-row justify-between bg-gray-300'>
                 {choice === "movie" ? (
-                    <MoviesList trending={topRated} />
+                    <MoviesList pageStyle={pageStyle} loading={loading} trending={topRated} />
                 ) : choice === "person" ? (
-                    <PersonList trending={topRated} />
-                ) : choice === "tv" ? <TvShowListing trending={topRated}/> : null}
+                    <PersonList pageStyle={pageStyle} trending={topRated} />
+                ) : choice === "tv" ? <TvShowListing pageStyle={pageStyle} trending={topRated}/> : null}
             </div>
         </div>
     )

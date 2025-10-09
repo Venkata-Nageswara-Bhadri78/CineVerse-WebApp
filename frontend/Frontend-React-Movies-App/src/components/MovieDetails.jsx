@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useMovieDetails } from '../API/Tmdb';
 import CastingDetails from './CastingDetails';
@@ -9,15 +9,13 @@ import { useParams } from 'react-router-dom';
 import BackButton from './BackButton';
 const MovieDetails = () => {
     const {movie_id} = useParams();
+    
     return (
         <div>
             <div><BackButton /></div>
             <div>
                 <MovieOverview type={'movie'} movieId={movie_id} credits={""}/>
-                <div className=''>
-                    
-                    <CastingDetails type={'movie'} movieId={movie_id} />
-                </div>
+                <CastingDetails type={'movie'} movieId={movie_id} />
             </div>
         </div>
     )

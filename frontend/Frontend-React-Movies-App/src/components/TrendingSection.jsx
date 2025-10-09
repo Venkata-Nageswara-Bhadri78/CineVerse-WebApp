@@ -8,19 +8,19 @@ import PersonList from './PersonList';
 import MoviesList from './MoviesList';
 import TvShowListing from './TvShowListing';
 import DayWeekSwitcher from '../API/DayWeekSwitcher';
+import ListLoadingSkeleton from '../ui/ListLoadingSkeleton';
 
-const TrendingSection = ({page=1}) => {
+const TrendingSection = ({pageStyle, page=1}) => {
 
     const [time, setTime] = useState("day");
     const [choice, setChoice] = useState("movie"); 
 
     const {trending, loading, error } = useTrendingMovies({ time: time, type: choice, page: page });
-
     return (
         <div> 
-            <div className='w-full p-4 bg-gray-300 flex flex-col justify-between'>
+            <div className='p-2 bg-gray-300 flex flex-col justify-between'>
                 <div>
-                    <div className='p-2 text-2xl'>Trending</div>
+                    <div className='text-2xl'>Trending</div>
                 </div>
                 <div className='flex felx-row justify-between items-center'>
                     <DayWeekSwitcher selected={time} setSelected={setTime} />
@@ -29,10 +29,10 @@ const TrendingSection = ({page=1}) => {
             </div>   
             <div className='flex flex-row overflow-x-auto w-full bg-gray-300'>
                 {choice === "movie" ? (
-                    <MoviesList trending={trending} />
+                    <MoviesList pageStyle={pageStyle} loading={loading} trending={trending} />
                 ) : choice === "person" ? (
-                    <PersonList trending={trending} />
-                ) : choice === "tv" ? <TvShowListing trending={trending}/> : null}
+                    <PersonList pageStyle={pageStyle} loading={loading} trending={trending} />
+                ) : choice === "tv" ? <TvShowListing pageStyle={pageStyle} loading={loading} trending={trending}/> : null}
             </div>
         </div>
     )

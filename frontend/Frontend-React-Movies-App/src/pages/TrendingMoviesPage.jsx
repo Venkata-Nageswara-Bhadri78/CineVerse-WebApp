@@ -6,10 +6,10 @@ import TrendingSection from '../components/TrendingSection';
 
 const TrendingMoviesPage = () => {
   const [page, setPage] = useState(1);  
-
+  const pageStyle = true;
   return (
     <div>
-      <TrendingSection page={page}/>
+      <TrendingSection pageStyle={pageStyle} page={page}/>
       <PageBar page={page} setPage={setPage}/>
     </div>
   )

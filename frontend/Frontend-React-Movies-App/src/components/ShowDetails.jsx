@@ -29,13 +29,19 @@ const ShowDetails = () => {
                     {/* Details */}
                     <div className="flex-1 space-y-4">
                     {/* Title */}
-                    <div className="text-center md:text-left">
-                        <a href={person.homepage} target="_blank" rel="noreferrer">
-                        <h1 className="text-3xl font-bold hover:text-blue-600 transition-colors">
-                            {person.name}
-                        </h1>
-                        </a>
-                        <p className="text-gray-500 italic">{person.tagline}</p>
+                    <div className='flex flex-row justify-between items-center'>
+                        <div className="text-center md:text-left">
+                            
+                            <div className="text-3xl font-bold hover:text-blue-600 transition-colors">
+                                {person.name}
+                            </div>
+                            <p className="text-gray-500 italic">{person.tagline}</p>
+                        </div>
+                        {person.homepage && 
+                            <a href={person.homepage} target="_blank" rel="noreferrer">
+                                <div className='bg-blue-100 border border-blue-400 p-2 rounded-full'>View Official Page</div>
+                            </a>
+                        }
                     </div>
 
                     {/* Meta Info */}
@@ -108,7 +114,7 @@ const ShowDetails = () => {
                     </div>
                     </div>
                 </div>
-                <div className='flex overflow-x-scroll gap-4 p-3'>
+                <div className='flex overflow-x-scroll scrollbar-hide gap-4 p-3'>
                     {showSeasons ? Array.isArray(person.seasons) && person.seasons.length > 0 ? person.seasons.map(season => {
                         return(
                             <div key={season.id} className=''>

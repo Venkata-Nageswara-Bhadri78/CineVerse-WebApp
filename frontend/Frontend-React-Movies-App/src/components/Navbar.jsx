@@ -8,12 +8,11 @@ const Navbar = () => {
         <div>
             <div className='md:hidden'>
                 <div className='flex justify-between items-center p-4 bg-blue-500 text-white'>
-                    <div>The Movie Application</div>
                     <div onClick={() => {setShowMenu(!showMenu)}} className=''><GiHamburgerMenu /></div>
                 </div>
                 {showMenu ? <HeaderItems showMenu={showMenu} setShowMenu={setShowMenu} /> : ''}
             </div>
-            <div className='md:block hidden'>
+            <div className='md:block hidden'>                
                 <HeaderItems showMenu={showMenu} setShowMenu={setShowMenu} />
             </div>
         </div>
