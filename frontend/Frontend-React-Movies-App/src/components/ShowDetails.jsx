@@ -39,7 +39,7 @@ const ShowDetails = () => {
                         </div>
                         {person.homepage && 
                             <a href={person.homepage} target="_blank" rel="noreferrer">
-                                <div className='bg-blue-100 border border-blue-400 p-2 rounded-full'>View Official Page</div>
+                                <div className='bg-slate-200 border border-slate-400 p-1 text-sm rounded-full'>View Page</div>
                             </a>
                         }
                     </div>
@@ -123,7 +123,6 @@ const ShowDetails = () => {
                         )
                     }) : '' : ''}
                 </div>
-
                 {/* {showSeasons ? <FloatingSeasonsInfo data={person.seasons} /> : ''} */}
             </div>
         </div>

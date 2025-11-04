@@ -34,7 +34,7 @@ const MovieOverview = ({type, movieId, credits}) => {
                         <div className="flex flex-col justify-center text-black">
                             <div className='flex items-center gap-5 mb-4'>
                                 <div className="cursor-pointer text-2xl font-bold">{data.original_title} ({data.release_date.slice(0, 4)})</div>
-                                {data.homepage && <a href={data.homepage}><div className='bg-blue-500 text-white rounded-full flex items-center gap-1 px-2 py-1'><FaRegPlayCircle /> Watch Movie</div></a>}
+                                {data.homepage && <a href={data.homepage}><div className='bg-blue-500 text-white rounded-full flex items-center gap-1 px-2 py-1'><FaRegPlayCircle /> Watch</div></a>}
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div>
@@ -56,8 +56,8 @@ const MovieOverview = ({type, movieId, credits}) => {
                                 <div className='flex flex-col gap-2 md:flex-row flex-wrap'> {/*  md:flex-row md:justify-around justify-between py-2 */}
                                     {data.production_companies.map(company => {
                                         return(
-                                            <div key={company.id} className='bg-blue-100 md:gap-2 flex flex-row justify-between items-center rounded-full text-black p-2 md:shadow-2xl border border-blue-400'>
-                                                <img className="h-5" src={company.logo_path ? `https://image.tmdb.org/t/p/w500${company.logo_path}` : default_prod_logo} alt="Production Logo" />
+                                            <div key={company.id} className='bg-slate-100 md:gap-2 flex flex-row justify-between items-center rounded-full text-black text-sm p-2 md:shadow-2xl border border-slate-400'>
+                                                <img className="h-2" src={company.logo_path ? `https://image.tmdb.org/t/p/w500${company.logo_path}` : default_prod_logo} alt="Production Logo" />
                                                 <div>{company.name}</div>
                                             </div>
                                         )

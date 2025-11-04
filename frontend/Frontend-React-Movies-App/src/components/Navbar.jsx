@@ -11,16 +11,15 @@ const Navbar = () => {
     return (
         <div>
             <div className='md:hidden'>
-                <div className='flex justify-between items-center p-4 bg-blue-500 text-white'>
-                    <div onClick={() => {setShowMenu(!showMenu)}} className=''><GiHamburgerMenu /></div>
+                <div className='flex justify-between items-center p-4 bg-slate-400 text-white'>
+                    <div onClick={() => {setShowMenu(!showMenu)}} className=''><GiHamburgerMenu size={25} /></div>
                     <Link to="/">
-                        <div className='flex w-full text-xl md:text-2xl items-center gap-2 text-white'>
-                            <div className='bg-white shadow-lg rounded-full p-2 text-black'><SiThemoviedatabase size={35}/></div>
-                            <div className='flex items-center gap-2 bg-white px-4 shadow-lg py-2 text-black rounded-full'>Cine <RiMovieAiFill /> Verse</div>
+                        <div className='flex w-full items-center gap-2'>
+                            <div className='flex items-center gap-2 bg-white px-2 shadow-lg py-1.5 text-black rounded-full'><RiMovieAiFill size={22} /> Cine Verse</div>
                         </div>
                     </Link>
                 </div>
-                {showMenu ? <HeaderItems showMenu={showMenu} setShowMenu={setShowMenu} /> : ''}
+                {showMenu && <HeaderItems showMenu={showMenu} />}
             </div>
             <div className='md:block hidden'>                
                 <HeaderItems showMenu={showMenu} setShowMenu={setShowMenu} />

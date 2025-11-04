@@ -18,7 +18,7 @@ const TrendingSection = ({pageStyle, page=1}) => {
     const {trending, loading, error } = useTrendingMovies({ time: time, type: choice, page: page });
     return (
         <div> 
-            <div className='p-2 bg-gray-300 flex flex-col justify-between'>
+            <div className='p-2 bg-gray-200 flex flex-col justify-between'>
                 <div>
                     <div className='text-2xl'>Trending</div>
                 </div>
@@ -26,8 +26,8 @@ const TrendingSection = ({pageStyle, page=1}) => {
                     <DayWeekSwitcher selected={time} setSelected={setTime} />
                     <ChoiceSelector selectChoice={choice} setSelectChoice={setChoice} isTopRated={false}/>
                 </div>
-            </div>   
-            <div className='flex flex-row overflow-x-auto w-full bg-gray-300'>
+            </div> 
+            <div className='flex flex-row overflow-x-auto w-full'>
                 {choice === "movie" ? (
                     <MoviesList pageStyle={pageStyle} loading={loading} trending={trending} />
                 ) : choice === "person" ? (

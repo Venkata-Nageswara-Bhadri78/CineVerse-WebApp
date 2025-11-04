@@ -3,7 +3,7 @@ import BrowseMovies from '../components/BrowseMovies'
 
 const BrowseMoviesPage = () => {
   return (
-    <div className='min-h-screen'>
+    <div className=''>
         <BrowseMovies />
     </div>
   )

@@ -26,17 +26,20 @@ import BackButton from './components/BackButton'
 import PersonDetails from './components/PersonDetails';
 import ShowDetails from './components/ShowDetails'
 import Floating from './components/Floating'
+import BrowseMoviesPage from './pages/BrowseMoviesPage'
 
 function App() {
 
   return (
     <div className=''>
       <Navbar />
+      <div className='md:min-h-25 bg-gray-200'></div>
+
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/top_rated_movies' element={<TopRatedMoviesPage />} />
         <Route path='/popular_movies' element={<PopularMoviesPage />} />
-        <Route path='/browse_movies' element={<BrowseMovies />} />
+        <Route path='/browse_movies' element={<BrowseMoviesPage />} />
         <Route path='movie_details/:movie_id' element={<MovieDetails />} />
         <Route path='/tv_show/:show_id' element={<ShowDetails />} />
         <Route path='/person/:person_id' element={<PersonDetails />} />

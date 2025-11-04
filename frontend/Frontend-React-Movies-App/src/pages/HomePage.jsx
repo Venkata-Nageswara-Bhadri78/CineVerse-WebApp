@@ -7,9 +7,9 @@ import Navbar from '../components/Navbar'
 const HomePage = () => {
   return (
     <div>
-        <PopularMoviesList />
-        <TrendingSection />
-        <TopRatedSection />
+      <PopularMoviesList />
+      <TrendingSection />
+      <TopRatedSection />
     </div>
   )
 }

@@ -20,11 +20,11 @@ const TopRatedSection = ({pageStyle, page=1}) => {
 
     return (
         <div className=''> 
-            <div className='items-center p-2 bg-gray-300 flex flex-row justify-between'>
+            <div className='items-center p-2 bg-gray-200 flex flex-row justify-between'>
                 <div className='p-2 text-xl'>Top Rated</div>
                 <ChoiceSelector selectChoice={choice} setSelectChoice={setChoice} isTopRated={true} />
             </div>
-            <div className='flex flex-row justify-between bg-gray-300'>
+            <div className='flex flex-row justify-between bg-gray-200'>
                 {choice === "movie" ? (
                     <MoviesList pageStyle={pageStyle} loading={loading} trending={topRated} />
                 ) : choice === "person" ? (

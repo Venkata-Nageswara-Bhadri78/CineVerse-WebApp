@@ -61,7 +61,7 @@ const BrowseMovies = () => {
 
   return (
     <>
-      <div className='w-full gap-3 p-3 bg-gray-300 flex justify-center items-center'>
+      <div className='w-full gap-3 p-3 bg-gray-200 flex justify-center items-center'>
         <input
           className='p-2 w-1/2 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
           value={inputValue}
@@ -79,10 +79,10 @@ const BrowseMovies = () => {
         </button>
       </div>
 
-      <div className='container w-full min-h-screen'>
-        {!loading && <div className='text-center mt-8'>Search for your Favourite Movies</div>}
-        {loading && <div className='text-center mt-8'>Loading movies...</div>}
-        {error && <div className='text-center mt-8 text-red-600'>Error: {error}</div>}
+      <div className='container bg-gray-200 w-full min-h-screen'>
+        {!loading && <div className='text-center pt-8'>Search for your Favourite Movies</div>}
+        {loading && <div className='text-center pt-8'>Loading movies...</div>}
+        {error && <div className='text-center pt-8 text-red-600'>Error: {error}</div>}
         {!loading && !error && searchTerm && searchResult.length === 0 && (
           <div className='text-center mt-8 text-gray-500'>No movies found for "{searchTerm}".</div>
         )}
