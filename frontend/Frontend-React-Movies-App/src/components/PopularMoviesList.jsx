@@ -15,7 +15,7 @@ const PopularMoviesList = ({pageStyle, page=1}) => {
   if (error) {
     return (
       <div className="p-4 bg-red-100 min-h-screen text-red-500 flex justify-center items-center">
-        Looks like&nbsp;<strong>TMDB</strong>&nbsp;is updating their system! Please try again in a little while.
+        Looks like TMDB is updating their system! Please try again in a little while.
       </div>
     );
   }
