@@ -5,12 +5,12 @@ const baseLink = import.meta.env.VITE_BASELINK;
 import { useAPIKey } from '../Context/ApiKeyProvider';
 
 export const useAllMoviesData = () => {
-  const apiKey = useAPIKey();  // Access the API key from context
+  const apiKey = useAPIKey();
 
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  
   useEffect(() => {
     if (!apiKey) return;
 
@@ -21,7 +21,6 @@ export const useAllMoviesData = () => {
         let totalPages = 1;
 
         while (page <= totalPages && page <= 500) {
-            
           const apiLink = `${baseLink}/trending/movie/day?api_key=${apiKey}&page=${page}`;
           const res = await fetch(apiLink);
           if (!res.ok) throw new Error("Error fetching data");
@@ -49,15 +48,15 @@ export const useAllMoviesData = () => {
 
 
 export const usePersonDetails = ({type, personId}) => {
-    const apiKey = useAPIKey();  // Access the API key from context
+    const apiKey = useAPIKey();
 
     const [person, setPerson] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const apiLink = `${baseLink}/${type}/${personId}?api_key=` + apiKey;
+
     useEffect(() => {
         if (!apiKey) return;
-
         const fetchPersonDetails = async () => {
             try{
                 const response = await fetch(apiLink);

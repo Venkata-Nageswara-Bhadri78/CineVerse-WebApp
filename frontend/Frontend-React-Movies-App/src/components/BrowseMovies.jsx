@@ -19,7 +19,8 @@ const useFetchSearchResults = (searchInput) => {
             setError(null); 
 
             try {
-                const searchApi = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(searchInput)}&page=1`;
+                const baseLink = import.meta.env.VITE_BASELINK;
+                const searchApi = `${baseLink}/search/movie?api_key=${apiKey}&query=${encodeURIComponent(searchInput)}&page=1`;
                 const res = await fetch(searchApi);
 
                 if (!res.ok) {

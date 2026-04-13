@@ -10,6 +10,7 @@ const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
     return (
         <div>
+            {/* For Mobile */}
             <div className='md:hidden'>
                 <div className='flex justify-between items-center p-4 bg-slate-400 text-white'>
                     <div onClick={() => {setShowMenu(!showMenu)}} className=''><GiHamburgerMenu size={25} /></div>
@@ -21,6 +22,7 @@ const Navbar = () => {
                 </div>
                 {showMenu && <HeaderItems showMenu={showMenu} />}
             </div>
+            {/* For Desktop */}
             <div className='md:block hidden'>                
                 <HeaderItems showMenu={showMenu} setShowMenu={setShowMenu} />
             </div>
