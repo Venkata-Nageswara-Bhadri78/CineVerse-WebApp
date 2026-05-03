@@ -13,40 +13,13 @@ app.use(cors());
 const TMDB_BASE_URL = process.env.TMDB_BASELINK;
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 
-// console.log(TMDB_API_KEY);
 app.post('/get-tmdb-key', (req, res) => {
     res.status(200).send({success: true, apiKey: TMDB_API_KEY });
 });
 
-// app.post('/fetchPersonDetails', async (req, res) => {
-//   const {type, personId } = req.body;
-//   const apiLink = `https://api.themoviedb.org/3/${type}/${personId}?api_key=` + TMDB_API_KEY;
-//   console.log(apiLink);
-
-//   try{
-//     const response = await fetch(apiLink);
-//     if(!response.ok){
-//       console.log("Error in Fetching Data");
-//     }
-//     const data = await response.json();
-//     if(type==='person'){
-//       setPerson([data]);
-//     }
-//     else{
-//       setPerson(data);
-//     }
-//   }
-//   catch(err){
-//     setError(err);
-//   }
-//   finally{
-//     setLoading(false);
-//   }
-// });
-
 app.use('/tmdb', async (req, res) => {
-  const path = req.path; // e.g. /movie/popular
-  // Remove leading slash if present to avoid // in URL
+  const path = req.path; 
+  
   const cleanPath = path.startsWith('/') ? path.substring(1) : path;
   
   const queryObj = { ...req.query };

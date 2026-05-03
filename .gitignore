@@ -1,0 +1,6 @@
+.DS_Store
+frontend/.DS_Store
+frontend/Frontend-React-Movies-App/.env
+frontend/Frontend-React-Movies-App/node_modules
+frontend/Frontend-React-Movies-App/dist
+.env

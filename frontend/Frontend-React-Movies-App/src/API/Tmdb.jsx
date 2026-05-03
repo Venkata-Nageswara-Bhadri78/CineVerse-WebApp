@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react'
 const baseLink = import.meta.env.VITE_BASELINK;
-// const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-
-import { useAPIKey } from '../Context/ApiKeyProvider';
 
 export const useAllMoviesData = () => {
-  const apiKey = useAPIKey();
-
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    if (!apiKey) return;
-
     const fetchAllMoviesData = async () => {
       try {
         let allMovies = [];
@@ -21,7 +14,7 @@ export const useAllMoviesData = () => {
         let totalPages = 1;
 
         while (page <= totalPages && page <= 500) {
-          const apiLink = `${baseLink}/trending/movie/day?api_key=${apiKey}&page=${page}`;
+          const apiLink = `${baseLink}/trending/movie/day?page=${page}`;
           const res = await fetch(apiLink);
           if (!res.ok) throw new Error("Error fetching data");
 
@@ -48,15 +41,12 @@ export const useAllMoviesData = () => {
 
 
 export const usePersonDetails = ({type, personId}) => {
-    const apiKey = useAPIKey();
-
     const [person, setPerson] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const apiLink = `${baseLink}/${type}/${personId}?api_key=` + apiKey;
+    const apiLink = `${baseLink}/${type}/${personId}`;
 
     useEffect(() => {
-        if (!apiKey) return;
         const fetchPersonDetails = async () => {
             try{
                 const response = await fetch(apiLink);
@@ -80,21 +70,18 @@ export const usePersonDetails = ({type, personId}) => {
             }
         }
         fetchPersonDetails();
-    }, [apiLink]);
+    }, [apiLink, type]);
     return { person, loading, error };
 }
 
-export const useMovieDetails = ({type, movieId, credits, page=1}) => {
-    const apiKey = useAPIKey();  // Access the API key from context
-
+export const useMovieDetails = ({type, movieId, credits = "", page=1}) => {
     const [movie, setMovie] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const apiLink = `${baseLink}/${type}/${movieId}${credits}?api_key=`+apiKey;
+    const apiLink = `${baseLink}/${type}/${movieId}${credits}`;
 
     useEffect(() => {
-        if (!apiKey) return;
         const fetchCompleteData = async () => {
             try {
                 const response = await fetch(apiLink);
@@ -116,7 +103,7 @@ export const useMovieDetails = ({type, movieId, credits, page=1}) => {
         };
 
         fetchCompleteData();
-    }, [apiLink]);
+    }, [apiLink, credits]);
 
     return { movie, loading, error };
 };
@@ -124,15 +111,12 @@ export const useMovieDetails = ({type, movieId, credits, page=1}) => {
 
 
 export const useTopRatedMovies = ({type, category, page=1}) => {
-    const apiKey = useAPIKey();  // Access the API key from context
-
     const [topRated, setTopRated] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const apiLink = `${baseLink}/${type}/${category}?api_key=`+apiKey + `&page=${page}`;
+    const apiLink = `${baseLink}/${type}/${category}?page=${page}`;
     useEffect(() => {
-        if (!apiKey) return;
         const fetchCompleteData = async () => {
             try{
                 const response = await fetch(apiLink);
@@ -155,16 +139,13 @@ export const useTopRatedMovies = ({type, category, page=1}) => {
     return {topRated, loading, error};
 }
 
-export const usePopularMovies = ({page=1}) => {
-    const apiKey = useAPIKey();  // Access the API key from context
-
+export const usePopularMovies = ({page=1} = {}) => {
     const [popular, setPopular] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const apiLink = `${baseLink}/movie/popular?api_key=${apiKey}&page=${page}`;
+    const apiLink = `${baseLink}/movie/popular?page=${page}`;
     useEffect(() => {
-        if (!apiKey) return;
         const fetchPopularMovies = async () => {
             try{
                 const response = await fetch(apiLink);
@@ -189,16 +170,13 @@ export const usePopularMovies = ({page=1}) => {
 
 
 export const useTrendingMovies = ({time, type, page}) => {
-    const apiKey = useAPIKey();  // Access the API key from context
-
     const [trending, setTrending] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const apiLink = `${baseLink}/trending/${type}/${time}?api_key=${apiKey}&page=${page}`;
+    const apiLink = `${baseLink}/trending/${type}/${time}?page=${page}`;
 
     useEffect(() => {
-        if (!apiKey) return;
         const fetchTrendingMovies = async () => {
             try{
                 const response = await fetch(apiLink);
@@ -232,3 +210,4 @@ const Tmdb = () => {
 
 
 export default Tmdb
+
