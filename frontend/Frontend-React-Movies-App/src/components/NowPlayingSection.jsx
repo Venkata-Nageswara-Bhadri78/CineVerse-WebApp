@@ -50,7 +50,7 @@ const NowPlayingSection = ({ pageStyle, page = 1 }) => {
     : `https://image.tmdb.org/t/p/original${currentMovie.poster_path}`;
 
   return (
-    <div className='relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-gray-200 mt-16 md:mt-0'>
+    <div className='relative w-full aspect-video md:aspect-auto md:h-[70vh] overflow-hidden bg-gray-200 md:mt-0'>
       {/* Background Image */}
       <div 
         className='absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out'
@@ -62,27 +62,27 @@ const NowPlayingSection = ({ pageStyle, page = 1 }) => {
       </div>
 
       {/* Content */}
-      <div className='absolute bottom-0 left-0 p-6 md:p-12 w-full md:w-2/3 lg:w-1/2'>
-        <h1 className='text-gray-900 text-3xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-4 drop-shadow-sm transition-all duration-500'>
+      <div className='absolute bottom-0 left-0 p-4 md:p-12 w-full md:w-2/3 lg:w-1/2'>
+        <h1 className='text-gray-900 text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-1 md:mb-4 drop-shadow-sm transition-all duration-500'>
           {currentMovie.title}
         </h1>
-        <p className='text-gray-800 text-sm md:text-lg mb-4 line-clamp-3 drop-shadow-sm transition-all duration-500 font-medium'>
+        <p className='text-gray-800 text-xs sm:text-sm md:text-lg mb-2 md:mb-4 line-clamp-2 md:line-clamp-3 drop-shadow-sm transition-all duration-500 font-medium'>
           {currentMovie.overview}
         </p>
         <Link to={`/movie_details/${currentMovie.id}`}>
-          <button className='bg-black/10 hover:bg-black/20 text-black border border-black/20 backdrop-blur-md px-6 py-2 md:px-8 md:py-3 rounded-full font-semibold transition-all shadow-sm'>
+          <button className='bg-black/10 hover:bg-black/20 text-black border border-black/20 backdrop-blur-md px-4 py-1.5 md:px-8 md:py-3 text-xs md:text-base rounded-full font-semibold transition-all shadow-sm'>
             View Details
           </button>
         </Link>
       </div>
 
       {/* Progress/Indicators (Clickable dots) */}
-      <div className='absolute bottom-4 right-4 md:bottom-8 md:right-8 flex gap-2 z-10'>
+      <div className='absolute bottom-2 right-2 md:bottom-8 md:right-8 flex gap-1.5 md:gap-2 z-10'>
         {nowPlaying.map((_, idx) => (
           <div 
             key={idx} 
             onClick={() => setCurrentIndex(idx)}
-            className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${idx === currentIndex ? 'w-8 bg-black' : 'w-2 bg-black/30 hover:bg-black/50'}`}
+            className={`h-1.5 md:h-2 rounded-full cursor-pointer transition-all duration-300 ${idx === currentIndex ? 'w-4 md:w-8 bg-black' : 'w-1.5 md:w-2 bg-black/30 hover:bg-black/50'}`}
           />
         ))}
       </div>
