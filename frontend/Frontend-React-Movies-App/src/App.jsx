@@ -27,6 +27,7 @@ import PersonDetails from './components/PersonDetails';
 import ShowDetails from './components/ShowDetails'
 import Floating from './components/Floating'
 import BrowseMoviesPage from './pages/BrowseMoviesPage'
+import NowPlayingMoviesPage from './pages/NowPlayingMoviesPage'
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/now_playing_movies' element={<NowPlayingMoviesPage />} />
         <Route path='/top_rated_movies' element={<TopRatedMoviesPage />} />
         <Route path='/popular_movies' element={<PopularMoviesPage />} />
         <Route path='/browse_movies' element={<BrowseMoviesPage />} />

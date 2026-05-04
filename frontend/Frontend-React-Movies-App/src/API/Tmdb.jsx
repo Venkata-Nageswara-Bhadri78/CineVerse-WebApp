@@ -199,6 +199,36 @@ export const useTrendingMovies = ({time, type, page}) => {
 }
 
 
+export const useNowPlayingMovies = ({page=1} = {}) => {
+    const [nowPlaying, setNowPlaying] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const apiLink = `${baseLink}/movie/now_playing?page=${page}`;
+    useEffect(() => {
+        const fetchNowPlayingMovies = async () => {
+            try{
+                const response = await fetch(apiLink);
+                if(!response.ok){
+                    throw new Error("Error in Data Loading");
+                }
+                const data = await response.json();
+                setNowPlaying(data.results);
+            }
+            catch(err){
+                setError("Error in Fetching Data...."+err);
+            }
+            finally{
+                setLoading(false);
+            }
+        }
+        fetchNowPlayingMovies();
+    }, [apiLink]);
+
+    return { nowPlaying, error, loading };
+}
+
+
 const Tmdb = () => {
     const {popular, loading, error } = usePopularMovies();
 

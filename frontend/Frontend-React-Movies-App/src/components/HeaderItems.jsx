@@ -16,6 +16,7 @@ const HeaderItems = ({ showMenu, setShowMenu, isMobile }) => {
       return (
           <div className='flex flex-col mt-6'>
             <Link to="/" onClick={handleItemClick}><div className={mobileLinkStyle}>Home</div></Link>
+            <Link to="/now_playing_movies" onClick={handleItemClick}><div className={mobileLinkStyle}>Now Playing</div></Link>
             <Link to="/browse_movies" onClick={handleItemClick}><div className={mobileLinkStyle}>Browse Movies</div></Link>
             <Link to="/popular_movies" onClick={handleItemClick}><div className={mobileLinkStyle}>Popular Movies</div></Link>
             <Link to="/top_rated_movies" onClick={handleItemClick}><div className={mobileLinkStyle}>Top Rated</div></Link>
@@ -25,10 +26,10 @@ const HeaderItems = ({ showMenu, setShowMenu, isMobile }) => {
   }
 
   // Desktop Style
-  const linkStyle = 'px-4 py-2 bg-white/70 text-black hover:bg-white/90 border border-white/40 transition-colors rounded-full gap-2 shadow-sm font-medium backdrop-blur-md';
+  const linkStyle = 'px-3 text-sm py-1.5 bg-white/70 text-black hover:bg-white/90 border border-white/40 transition-colors rounded-full gap-2 shadow-sm font-medium backdrop-blur-md';
   
   return (
-    <div className='fixed md:w-[80%] p-4 bg-slate-400/60 backdrop-blur-lg border border-white/30 z-50 shadow-lg top-5 rounded-lg mx-auto flex flex-row gap-4 items-center justify-between left-0 right-0'>
+    <div className='fixed md:w-[90%] p-4 bg-slate-400/60 backdrop-blur-lg border border-white/30 z-50 shadow-lg top-5 rounded-lg mx-auto flex flex-row gap-2 items-center justify-between left-0 right-0'>
         <Link to="/">
           <div className='flex w-full items-center gap-2 text-white'>
             <div className={linkStyle}><SiThemoviedatabase size={25}/></div>
@@ -38,6 +39,7 @@ const HeaderItems = ({ showMenu, setShowMenu, isMobile }) => {
 
         <div className='flex flex-row items-center gap-2 justify-between'>
           <Link to="/"><div className={linkStyle}>Home</div></Link>
+          <Link to="/now_playing_movies"><div className={linkStyle}>Now Playing</div></Link>
           <Link to="/browse_movies"><div className={linkStyle}>Browse Movies</div></Link>
           <Link to="/popular_movies"><div className={linkStyle}>Popular Movies</div></Link>
           <Link to="/top_rated_movies"><div className={linkStyle}>Top Rated</div></Link>
