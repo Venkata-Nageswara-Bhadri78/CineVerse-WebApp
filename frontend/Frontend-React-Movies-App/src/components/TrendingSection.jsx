@@ -17,17 +17,15 @@ const TrendingSection = ({pageStyle, page=1}) => {
 
     const {trending, loading, error } = useTrendingMovies({ time: time, type: choice, page: page });
     return (
-        <div> 
-            <div className='p-2 bg-gray-200 flex flex-col justify-between'>
-                <div>
-                    <div className='text-2xl'>Trending</div>
-                </div>
-                <div className='flex felx-row justify-between items-center'>
+        <div className='bg-gray-50/50 backdrop-blur-sm border-b border-gray-200'> 
+            <div className='p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-6 max-w-7xl mx-auto'>
+                <div className='text-2xl md:text-3xl font-extrabold text-gray-900 border-l-4 border-indigo-500 pl-4'>Trending</div>
+                <div className='flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto'>
                     <DayWeekSwitcher selected={time} setSelected={setTime} />
                     <ChoiceSelector selectChoice={choice} setSelectChoice={setChoice} isTopRated={false}/>
                 </div>
             </div> 
-            <div className='flex flex-row overflow-x-auto w-full'>
+            <div className='w-full'>
                 {choice === "movie" ? (
                     <MoviesList pageStyle={pageStyle} loading={loading} trending={trending} />
                 ) : choice === "person" ? (
@@ -35,7 +33,9 @@ const TrendingSection = ({pageStyle, page=1}) => {
                 ) : choice === "tv" ? <TvShowListing pageStyle={pageStyle} loading={loading} trending={trending}/> : null}
             </div>
         </div>
+
     )
+
 }
 
 export default TrendingSection

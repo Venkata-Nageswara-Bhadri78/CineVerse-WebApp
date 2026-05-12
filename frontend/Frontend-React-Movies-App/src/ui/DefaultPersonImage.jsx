@@ -1,20 +1,24 @@
 import React from 'react'
 
-const DefaultPersonImage = ({name}) => {
+const DefaultPersonImage = ({ name }) => {
+  const letter = name ? name.substring(0, 1).toUpperCase() : '?';
+  const bgColor = color[letter] || 'rgba(100, 100, 100, 0.6)';
 
-    const letter = name ? name.substring(0, 1).toUpperCase() : '$';
-    const bgColor = color[letter] || 'rgba(100, 100, 100, 0.6)';
   return (
-    <div style={{ backgroundColor: bgColor }} className={`text-[50px] font-extrabold flex flex-col gap-2 justify-center items-center min-h-60 rounded-t-lg`}>
-        <div className='bg-white h-15 w-15 shadow-2xl rounded-full flex justify-center items-center'>
-            {letter}
-        </div>
-        <div className='text-xs font-normal'>
-            No Image Available
-        </div>
+    <div 
+      style={{ backgroundColor: bgColor }} 
+      className="w-full h-full flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-white/20 to-transparent"
+    >
+      <div className="w-16 h-16 md:w-20 md:h-20 bg-white/90 backdrop-blur-md rounded-full shadow-2xl flex items-center justify-center text-3xl md:text-4xl font-black text-gray-800 border-2 border-white/50">
+        {letter}
+      </div>
+      <div className="text-[10px] md:text-xs font-bold text-white/90 tracking-widest uppercase bg-black/20 px-3 py-1 rounded-full backdrop-blur-sm">
+        No Image
+      </div>
     </div>
-  )
-}
+  );
+};
+
 
 export default DefaultPersonImage
 

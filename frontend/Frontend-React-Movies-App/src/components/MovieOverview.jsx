@@ -7,14 +7,24 @@ import RoundProgress from '../ui/RoundProgress';
 import default_prod_logo from '../assets/fallback-prod-logo.png';
 import default_prod from '../assets/fallback-prod-logo.png'
 
-import { FaRegPlayCircle } from "react-icons/fa";
 
-const MovieOverview = ({type, movieId, credits}) => {
-    const { movie, error, loading } = useMovieDetails({type: 'movie', movieId: movieId, credits: ""});
+import { FaRegPlayCircle } from "react-icons/fa";
+import { DetailsSkeleton } from '../ui/ListLoadingSkeleton';
+import BackButton from './BackButton';
+
+const MovieOverview = ({ type, movieId, credits }) => {
+    const { movie, error, loading } = useMovieDetails({ type: 'movie', movieId: movieId, credits: "" });
+
+    if (loading) return <DetailsSkeleton />;
+    if (error || !movie || movie.length === 0) return null;
+
+    const data = movie[0];
 
     return (
         <div>
             {movie.map(data => {
+
+
                 return (
                     <div key={data.id}>
 
@@ -70,7 +80,7 @@ const MovieOverview = ({type, movieId, credits}) => {
                 )
                 })}
         </div>
-    )
+    );
 }
 
-export default MovieOverview
+export default MovieOverview;

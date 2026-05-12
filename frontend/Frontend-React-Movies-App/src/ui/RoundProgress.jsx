@@ -50,6 +50,7 @@
 // export default function RoundProgress({value}) {
 //   return <CircularProgressWithLabel value={value} />;
 // }
+
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -61,62 +62,64 @@ function CircularProgressWithLabel(props) {
   const theme = useTheme();
   const [progress, setProgress] = React.useState(0);
 
-  // This effect runs when the component mounts and whenever the `value` prop changes.
   React.useEffect(() => {
-    // Set up a timer to smoothly increment the progress state
     const timer = setInterval(() => {
       setProgress((prevProgress) => {
         if (prevProgress >= props.value) {
-          clearInterval(timer); // Stop the timer when the target is reached
+          clearInterval(timer);
           return props.value;
         }
         return prevProgress + 1;
       });
-    }, 20); // The interval duration controls the speed of the animation
+    }, 15);
 
-    // Cleanup function: This is crucial to prevent memory leaks.
-    // It runs when the component unmounts or before the effect runs again.
-    return () => {
-      clearInterval(timer);
-    };
+    return () => clearInterval(timer);
   }, [props.value]);
 
-
   const getColor = (value) => {
-    if (value < 40) return theme.palette.error.main;
-    if (value < 70) return theme.palette.warning.main;
-    return theme.palette.success.main;
+    if (value < 40) return '#ff4757'; // vibrant red
+    if (value < 70) return '#ffa502'; // vibrant orange
+    return '#2ed573'; // vibrant green
   };
 
   const progressColor = getColor(progress);
 
   return (
-    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+    <Box 
+      sx={{ 
+        position: 'relative', 
+        display: 'inline-flex',
+        borderRadius: '50%',
+        bgcolor: 'rgba(8, 28, 34, 0)', // Standard TMDB dark blue/black
+        p: 0.4,
+        // boxShadow: '0 2px 8px rgba(0,0,0,0.4)',
+      }}
+    >
       {/* Background Track */}
       <CircularProgress
         variant="determinate"
         sx={{
-          color: theme.palette.grey[theme.palette.mode === 'light' ? 300 : 800],
+          color: 'rgba(255, 255, 255, 0.1)',
         }}
-        size={60}
-        thickness={5}
+        size={38}
+        thickness={3}
         value={100}
       />
       {/* Animated Progress Arc */}
       <CircularProgress
         variant="determinate"
         value={progress}
-        size={60}
-        thickness={5}
+        size={38}
+        thickness={3}
         sx={{
           color: progressColor,
           position: 'absolute',
-          left: 0,
-          // Adds a subtle shadow for depth, matching the arc's color
-          filter: `drop-shadow(0 0 3px ${progressColor}A0)`,
+          left: 3.2,
+          top: 3.2,
+          filter: `drop-shadow(0 0 2px ${progressColor})`,
           '& .MuiCircularProgress-circle': {
             strokeLinecap: 'round',
-            transition: 'stroke-dashoffset 0.2s ease-in-out', // Smooths the SVG drawing
+            transition: 'stroke-dashoffset 0.3s ease-in-out',
           },
         }}
       />
@@ -137,25 +140,24 @@ function CircularProgressWithLabel(props) {
           variant="caption"
           component="div"
           sx={{
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            color: 'text.primary',
+            fontSize: '0.8rem',
+            fontWeight: '800',
+            color: '#000',
           }}
         >
           {`${Math.round(progress)}`}
-          <sup style={{ fontSize: '0.6rem', marginLeft: '1px' }}>%</sup>
         </Typography>
       </Box>
     </Box>
   );
 }
 
+
 CircularProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
 export default function RoundProgress({ value }) {
-  // Clamping the value ensures it's always within the 0-100 range
   const clampedValue = Math.min(Math.max(value, 0), 100);
   return <CircularProgressWithLabel value={clampedValue} />;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNowPlayingMovies } from '../API/Tmdb';
-import ListLoadingSkeleton from '../ui/ListLoadingSkeleton';
+import ListLoadingSkeleton, { HeroSkeleton } from '../ui/ListLoadingSkeleton';
 import MoviesList from './MoviesList';
 import { Link } from 'react-router-dom';
 
@@ -28,18 +28,27 @@ const NowPlayingSection = ({ pageStyle, page = 1 }) => {
   }
 
   if (loading) {
-    return <div className="bg-gray-200 p-4"><ListLoadingSkeleton /></div>;
+    return pageStyle ? (
+      <div className="bg-gray-200 p-4">
+        <ListLoadingSkeleton pageStyle={true} />
+      </div>
+    ) : (
+      <HeroSkeleton />
+    );
   }
 
   // Grid style for dedicated Now Playing page
   if (pageStyle) {
     return (
       <div className='bg-gray-200'>
-        <div className='p-2 text-xl font-bold ml-2 pt-4 md:pt-8'>Now Playing</div>
-        <MoviesList pageStyle={pageStyle} loading={loading} trending={nowPlaying} />
+        <div className='p-4 text-2xl font-bold text-gray-800 pt-4 md:pt-8'>Now Playing</div>
+        <div className='w-full'>
+          <MoviesList pageStyle={pageStyle} loading={loading} trending={nowPlaying} />
+        </div>
       </div>
     );
   }
+
 
   // Hero Carousel style for HomePage
   if (!nowPlaying || nowPlaying.length === 0) return null;
@@ -56,9 +65,10 @@ const NowPlayingSection = ({ pageStyle, page = 1 }) => {
         className='absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out'
         style={{ backgroundImage: `url(${backdropUrl})` }}
       >
-        {/* Gradient Overlay matching the light theme, reduced coverage */}
-        <div className='absolute inset-0 bg-gradient-to-t from-gray-200/90 via-gray-200/20 to-transparent'></div>
-        <div className='absolute inset-0 bg-gradient-to-r from-gray-200/90 via-gray-200/30 to-transparent w-full md:w-3/4'></div>
+        {/* Very subtle Gradient Overlay to ensure text readability without hiding the poster */}
+        <div className='absolute inset-0 bg-gradient-to-t from-gray-200/60 via-transparent to-transparent'></div>
+        <div className='absolute inset-0 bg-gradient-to-r from-gray-200/60 via-transparent to-transparent w-full md:w-1/2'></div>
+
       </div>
 
       {/* Content */}
@@ -70,7 +80,7 @@ const NowPlayingSection = ({ pageStyle, page = 1 }) => {
           {currentMovie.overview}
         </p>
         <Link to={`/movie_details/${currentMovie.id}`}>
-          <button className='bg-black/10 hover:bg-black/20 text-black border border-black/20 backdrop-blur-md px-4 py-1.5 md:px-8 md:py-3 text-xs md:text-base rounded-full font-semibold transition-all shadow-sm'>
+          <button className='bg-black/10 hover:bg-black/20 text-black border border-black/30 backdrop-blur-md px-4 py-1.5 md:px-2 md:py-1.5 text-xs md:text-base rounded-full font-semibold transition-all shadow-sm'>
             View Details
           </button>
         </Link>

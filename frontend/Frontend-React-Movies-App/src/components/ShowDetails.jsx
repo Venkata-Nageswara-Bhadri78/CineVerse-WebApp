@@ -114,22 +114,17 @@ const ShowDetails = () => {
                     </div>
                     </div>
                 </div>
-                <div className='flex overflow-x-scroll scrollbar-hide gap-4 p-3'>
-                    {showSeasons ? Array.isArray(person.seasons) && person.seasons.length > 0 ? person.seasons.map(season => {
-                        return(
-                            <div key={season.id} className=''>
-                                <SeasonCard season={season}/>
-                            </div>
-                        )
-                    }) : '' : ''}
                 </div>
-                {/* {showSeasons ? <FloatingSeasonsInfo data={person.seasons} /> : ''} */}
+                {showSeasons && (
+                    <FloatingSeasonsInfo 
+                        data={person.seasons} 
+                        onClose={() => setShowSeasons(false)} 
+                    />
+                )}
             </div>
-        </div>
 
     )
 }
 
 export default ShowDetails
-
 

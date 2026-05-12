@@ -11,14 +11,16 @@ const MovieDetails = () => {
     const {movie_id} = useParams();
     
     return (
-        <div>
-            <div><BackButton /></div>
-            <div>
-                <MovieOverview type={'movie'} movieId={movie_id} credits={""}/>
-                <CastingDetails type={'movie'} movieId={movie_id} />
+        <div className="bg-gray-50 min-h-screen">
+            <div className="max-w-6xl mx-auto px-6 pt-6">
+                <BackButton />
             </div>
+            <MovieOverview type={'movie'} movieId={movie_id} credits={""}/>
+            <CastingDetails type={'movie'} movieId={movie_id} />
         </div>
     )
+
 }
+
 
 export default MovieDetails

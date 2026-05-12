@@ -12,7 +12,7 @@ const MoviesList = ({ pageStyle, loading, trending }) => {
                 : 'flex flex-row overflow-x-auto snap-x snap-mandatory gap-3 scrollbar-hide'
             } p-2 bg-gray-200`}
             >
-            {loading ? <ListLoadingSkeleton /> : (
+            {loading ? <ListLoadingSkeleton pageStyle={pageStyle} /> : (
                 trending.map(movie => {
                     return(
                         <MovieCard key={movie.id} movie={movie} />

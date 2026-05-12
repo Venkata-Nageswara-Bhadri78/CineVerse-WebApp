@@ -22,23 +22,12 @@ const PopularMoviesList = ({pageStyle, page=1}) => {
   
   return (
     <div className='bg-gray-200'>
-      <div className='p-2  text-xl'>Popular Movies</div>
-      <div>
-{/*   // className={`${pageStyle ? 'grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-x-0 gap-y-2 justify-items-center' : 'flex flex-row overflow-x-auto snap-x snap-mandatory gap-3 scrollbar-hide'}`}> */}
-        {loading ? <ListLoadingSkeleton /> : (
-          // popular.map((movie, index) => {
-          //     return(
-          //       <div key={index} className='snap-start'>
-          //         <MovieCard key={movie.id} movie={movie} />
-          //       </div>
-          //     )
-          // })
-          <MoviesList pageStyle={pageStyle} loading={loading} trending={popular} />
-
-        )
-        }
+      <div className='p-4 text-2xl font-bold text-gray-800'>Popular Movies</div>
+      <div className='w-full'>
+        <MoviesList pageStyle={pageStyle} loading={loading} trending={popular} />
       </div>
     </div>
+
   )
 }
 

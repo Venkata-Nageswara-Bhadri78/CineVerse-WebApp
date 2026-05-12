@@ -4,31 +4,36 @@ import { Link } from 'react-router-dom'
 
 const SeasonCard = ({ season, showId }) => {
   return (
-    <Link to={`/tv_show/${showId}/season/${season.season_number}`}>
-      <div className='w-36 sm:w-40 md:w-44 flex-shrink-0 bg-white shadow-md flex flex-col rounded-lg'>
-        <div>
+    <Link to={`/tv_show/${showId}/season/${season.season_number}`} className="block transform transition-transform hover:scale-[1.03] active:scale-95 h-full">
+      <div className='w-full flex-shrink-0 bg-white/70 backdrop-blur-md border border-white/30 shadow-lg flex flex-col rounded-xl overflow-hidden h-full'>
+
+        <div className="relative aspect-[2/3] overflow-hidden">
           <img
-            className='rounded-t-lg w-full object-cover h-60'
+            className='w-full h-full object-cover transition-transform duration-500 hover:scale-110'
             src={
               season.poster_path
                 ? `https://image.tmdb.org/t/p/w500${season.poster_path}`
-                : '/default-cast.png' // optional fallback
+                : '/default-cast.png'
             }
             alt={`The Season ${season.name} Poster`}
+            loading="lazy"
           />
         </div>
 
-        <div className='h-18 flex justify-between px-2 py-1 items-center'>
-          <div className='overflow-hidden w-24'>
-            <div className='text-xs font-semibold truncate leading-tight'>
-              <strong>{season.name}</strong>
+        <div className='flex-1 flex justify-between px-3 py-2 items-center bg-white/50'>
+          <div className='overflow-hidden pr-2'>
+            <div className='text-[10px] md:text-xs font-bold truncate leading-tight text-gray-800'>
+              {season.name}
             </div>
-            <div className='text-[9px] text-gray-500 truncate'>
-              {season.air_date || ''}
+            <div className='text-[8px] md:text-[10px] text-gray-500 font-medium truncate'>
+              {season.air_date || 'TBA'}
+            </div>
+            <div className='text-[8px] md:text-[10px] text-indigo-600 font-bold mt-0.5'>
+              {season.episode_count} Episodes
             </div>
           </div>
 
-          <div className='scale-65'>
+          <div className='flex-shrink-0 scale-75 origin-right'>
             <RoundProgress value={(season.vote_average / 10) * 100} />
           </div>
         </div>
@@ -36,6 +41,7 @@ const SeasonCard = ({ season, showId }) => {
     </Link>
   )
 }
+
 
 export default SeasonCard
 

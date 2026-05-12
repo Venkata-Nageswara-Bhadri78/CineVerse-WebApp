@@ -1,20 +1,24 @@
 import React from 'react'
 
-const DefaultCastImage = ({name}) => {
+const DefaultCastImage = ({ name }) => {
+  const letter = name ? name.substring(0, 1).toUpperCase() : '?';
+  const bgColor = color[letter] || 'rgba(100, 100, 100, 0.6)';
 
-    const letter = name ? name.substring(0, 1).toUpperCase() : '$';
-    const bgColor = color[letter] || 'rgba(100, 100, 100, 0.6)';
   return (
-    <div style={{ backgroundColor: bgColor }} className={`text-[50px] font-extrabold flex flex-col gap-2 justify-center items-center min-h-59 rounded-t-lg`}>
-        <div className='bg-white h-15 w-15 shadow-2xl rounded-full flex justify-center items-center'>
-            {letter}
-        </div>
-        <div className='text-xs font-normal'>
-            No Image Available
-        </div>
+    <div 
+      style={{ backgroundColor: bgColor }} 
+      className="w-full h-full flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-white/20 to-transparent"
+    >
+      <div className="w-12 h-12 md:w-16 md:h-16 bg-white/90 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center text-2xl md:text-3xl font-black text-gray-800 border-2 border-white/50">
+        {letter}
+      </div>
+      <div className="text-[8px] md:text-[10px] font-bold text-white/90 tracking-widest uppercase bg-black/20 px-2 py-0.5 rounded-full backdrop-blur-sm">
+        No Image
+      </div>
     </div>
-  )
-}
+  );
+};
+
 
 export default DefaultCastImage
 

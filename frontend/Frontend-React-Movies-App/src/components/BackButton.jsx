@@ -7,11 +7,13 @@ const BackButton = () => {
 
     return (
     <div className='p-2'>
-        <div onClick={() => {navigate(-1)}} className='w-1/9 flex justify-center py-2 px-2 rounded-2xl bg-black text-white'>
+        <div onClick={() => {navigate(-1)}} className='w-12 h-10 flex justify-center items-center rounded-2xl bg-black text-white cursor-pointer hover:bg-gray-800 transition-colors'>
             <MdArrowBackIosNew />
         </div>
     </div>
   )
 }
+
+
 
 export default BackButton
