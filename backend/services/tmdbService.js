@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import { tmdbConfig } from '../config/tmdbConfig.js';
 import { getCache, setCache, generateCacheKey } from '../utils/cache.js';
+import { buildTmdbUrl } from '../helpers/buildTmdbUrl.js';
 
 // Helper to filter unnecessary data from lists
 const transformList = (results) => {
@@ -132,23 +133,10 @@ export const fetchFromTmdb = async (endpoint, params = {}, ttl = 3600) => {
         return cachedData;
     }
 
-    const ipAddress = '3.175.86.50';
-    
-    // Clean up params to remove undefined/null values
-    const cleanParams = { api_key: tmdbConfig.apiKey };
-    Object.keys(params).forEach(key => {
-        if (params[key] !== undefined && params[key] !== null && params[key] !== '') {
-            cleanParams[key] = params[key];
-        }
-    });
-
-    const queryParams = new URLSearchParams(cleanParams).toString();
-    
-    const url = `http://${ipAddress}/3/${endpoint}?${queryParams}`;
-    const headers = { 'Host': 'api.themoviedb.org' };
+    const url = buildTmdbUrl(endpoint, params);
 
     try {
-        const response = await fetch(url, { headers });
+        const response = await fetch(url);
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({ status_message: 'Unknown error' }));
             throw new Error(errorData.status_message || `TMDB API error: ${response.status}`);

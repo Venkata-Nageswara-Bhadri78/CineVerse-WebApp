@@ -2,7 +2,7 @@ import NodeCache from 'node-cache';
 
 // stdTTL: 1 hour (3600 seconds)
 // checkperiod: 120 seconds
-const cache = new NodeCache({ stdTTL: 3600, checkperiod: 120 });
+const cache = new NodeCache({ stdTTL: 3600, checkperiod: 120, maxKeys: 500 });
 
 export const getCache = (key) => cache.get(key);
 
