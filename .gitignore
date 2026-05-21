@@ -4,3 +4,6 @@ frontend/Frontend-React-Movies-App/.env
 frontend/Frontend-React-Movies-App/node_modules
 frontend/Frontend-React-Movies-App/dist
 .env
+/documentation.md
+.DS_Store
+.DS_Store
