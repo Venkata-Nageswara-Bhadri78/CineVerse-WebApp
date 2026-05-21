@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import MovieCard from './MovieCard';
-import Tmdb, { useTrendingMovies } from '../API/Tmdb'
+import { useTrendingMovies } from '../API/Tmdb'
 import Switcher from '../API/Switcher';
 import ChoiceSelector from '../API/ChoiceSelector';
 import PersonList from './PersonList';

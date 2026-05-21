@@ -4,6 +4,7 @@ import SeasonCard from './SeasonCard';
 import BackButton from './BackButton';
 import FloatingSeasonsInfo from './FloatingSeasonsInfo';
 import { useParams } from 'react-router-dom';
+import { DetailsSkeleton } from '../ui/ListLoadingSkeleton';
 const ShowDetails = () => {
     const {show_id} = useParams();
 
@@ -11,7 +12,13 @@ const ShowDetails = () => {
 
     const [showSeasons, setShowSeasons] = useState(false);
 
-    // console.log(showSeasons);
+    if (loading) return (
+        <div className="p-6 max-w-6xl mx-auto">
+            <div className="mb-4"><BackButton /></div>
+            <DetailsSkeleton />
+        </div>
+    );
+    if (error || !person) return null;
     return (
         <div>
             <div><BackButton /></div>

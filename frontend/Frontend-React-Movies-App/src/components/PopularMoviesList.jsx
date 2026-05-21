@@ -5,9 +5,6 @@ import MovieCard from './MovieCard';
 import ListLoadingSkeleton from '../ui/ListLoadingSkeleton';
 import MoviesList from './MoviesList';
 
-const extrasInURL = '&language=en-US';
-const baseLink = import.meta.env.VITE_BASELINK;
-const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
 const PopularMoviesList = ({pageStyle, page=1}) => {
   const {popular, error, loading } = usePopularMovies({page});

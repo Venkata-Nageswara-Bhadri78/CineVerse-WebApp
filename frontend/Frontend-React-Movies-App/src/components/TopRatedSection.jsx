@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import MovieCard from './MovieCard';
 // https://api.themoviedb.org/3/trending/movie/{time_window}
-import Tmdb, { useTopRatedMovies } from '../API/Tmdb'
+import { useTopRatedMovies } from '../API/Tmdb'
 import Switcher from '../API/Switcher';
 import ChoiceSelector from '../API/ChoiceSelector';
 import PersonList from './PersonList';
